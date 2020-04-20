@@ -1,0 +1,8 @@
+//
+// Created by alessandro on 20/04/2020.
+//
+
+#ifndef VENDINGMACHINE_DEFINICOES_H
+#define VENDINGMACHINE_DEFINICOES_H
+
+#endif //VENDINGMACHINE_DEFINICOES_H
