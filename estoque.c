@@ -41,7 +41,7 @@ void est_exportarEstoque() { //TODO: tentar printar isso pelo comunicador
     for (int i = 0; i < NUMS_SLOTSPRODUTOS; i++) {
         if (produtos[i].quantidade > -1) {
             fflush(stdin);
-            printf("Produto %i : ", i);
+            printf("Produto %i : ", i+1);
             printf("%i ", produtos[i].quantidade);
             printf("%s", produtos[i].nome);
             printf(": R$%.2f.\n", produtos[i].preco);
@@ -65,3 +65,33 @@ char* est_getNomeProduto(int produtoDesejado) {
 float est_getPrecoProduto(int produtoDesejado) {
     return  produtos[produtoDesejado].preco;
 }
+
+void est_alteraEstoque(int slotAlterado) {
+    printf("Nome do Produto no slot %i: ", slotAlterado);
+    fflush(stdin);
+    scanf("%s", produtos[slotAlterado].nome);
+    printf("Quantidade do Produto %s: ", produtos[slotAlterado].nome);
+    fflush(stdin);
+    scanf("%d", &produtos[slotAlterado].quantidade);
+    printf("Preço do Produto %s: ", produtos[slotAlterado].nome);
+    fflush(stdin);
+    scanf("%f", &produtos[slotAlterado].preco);
+    printf("\n");
+
+    printf("Produto no slot %i : ", slotAlterado);
+    printf("%i ", produtos[slotAlterado].quantidade);
+    printf("%s", produtos[slotAlterado].nome);
+    printf(": R$%.2f.\n", produtos[slotAlterado].preco);
+    printf("\n");
+}
+
+int est_removeEstoque(int slotAlterado) {
+    strncpy(produtos[slotAlterado].nome, "", 29);
+    produtos[slotAlterado].nome[29] = 0;
+    produtos[slotAlterado].quantidade = -1;
+    produtos[slotAlterado].preco = 0.0;
+
+    return true;
+}
+
+

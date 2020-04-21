@@ -15,4 +15,9 @@ extern void est_exportarEstoque();
 extern int est_pagamento(int);
 extern char* est_getNomeProduto(int);
 extern float est_getPrecoProduto(int);
+
+extern void est_alteraEstoque(int);
+
+extern int est_removeEstoque(int);
+
 #endif //VENDINGMACHINE_ESTOQUE_H

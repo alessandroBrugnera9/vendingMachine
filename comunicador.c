@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "comunicador.h"
 #include "caixaDeDinheiro.h"
+#include "string.h"
 #include "estoque.h"
 
 
@@ -57,11 +58,54 @@ void com_pedidoRecebido() {//TODO: Try Catch
 
     if (est_pagamento(produtoDesejado)) {
         printf("\n");
-        printf("Produto %s entregue.", est_getNomeProduto(produtoDesejado)); //TODO: conferir se isso com ponteiro vai dar bom
+        printf("Produto %s entregue.",
+               est_getNomeProduto(produtoDesejado)); //TODO: conferir se isso com ponteiro vai dar bom
         printf("\n");
         printf("Troco: %.2f.", cxd_getCredito() - est_getPrecoProduto(produtoDesejado));
     } else {
         printf("\n");
         printf("Crédito insuficiente.");
     }
+}
+
+void com_alterandoEstoque() {
+    fflush(stdin);
+    est_exportarEstoque();
+    fflush(stdin);
+    printf("Qual slot de produto será removido (Número de 1 a 10)?\n");
+}
+
+void com_estoqueAlterado() {
+    fflush(stdin);
+    int slotAlterado;
+    scanf("%d", &slotAlterado);
+
+    est_alteraEstoque(slotAlterado);
+}
+
+void com_removendoProduto() {
+    fflush(stdin);
+    est_exportarEstoque();
+    fflush(stdin);
+    printf("Qual slot de produto será removido (Número de 1 a 10)?\n");
+}
+
+void com_produtoRemovido() {
+    fflush(stdin);
+    int slotAlterado;
+    scanf("%d", &slotAlterado);
+
+
+    if (est_removeEstoque(slotAlterado)) {
+        printf("Slot %i vazio. ", slotAlterado);
+    } else {
+        printf("Slot inexistente.");
+    }
+
+}
+
+void com_cancelamento() {
+    printf("Compra cancelada.\n");
+    printf("Troco: R$%.2f.\n", cxd_getCredito());
+    cxd_zeraCaixa();
 }

@@ -19,36 +19,36 @@ void iniciaMaquinaEstados(void) {
         }
     }
 
-    acaoMatrizTransicaoEstados[IDLE][PEDIR] = PEDINDO;
-    proximoEstadoMatrizTransicaoEstados[IDLE][PEDIR] = A01;
+    proximoEstadoMatrizTransicaoEstados[IDLE][INSERIRDINHEIRO] = INSERINDO;
+    acaoMatrizTransicaoEstados[IDLE][INSERIRDINHEIRO] = A01;
 
-    acaoMatrizTransicaoEstados[PEDINDO][PEDIDOSUCESSO] = IDLE;
-    proximoEstadoMatrizTransicaoEstados[PEDINDO][PEDIDOSUCESSO] = A02;
-
-
-    acaoMatrizTransicaoEstados[IDLE][INSERIRDINHEIRO] = INSERINDO;
-    proximoEstadoMatrizTransicaoEstados[IDLE][INSERIRDINHEIRO] = A03;
-
-    acaoMatrizTransicaoEstados[INSERINDO][DINHEIROINSERIDO] = IDLE;
-    proximoEstadoMatrizTransicaoEstados[INSERINDO][DINHEIROINSERIDO] = A04;
+    proximoEstadoMatrizTransicaoEstados[INSERINDO][DINHEIROINSERIDO] = IDLE;
+    acaoMatrizTransicaoEstados[INSERINDO][DINHEIROINSERIDO] = A02;
 
 
-    acaoMatrizTransicaoEstados[IDLE][CANCELAR] = CANCELANDO;
-    proximoEstadoMatrizTransicaoEstados[IDLE][CANCELAR] = A09;
+    proximoEstadoMatrizTransicaoEstados[IDLE][PEDIR] = PEDINDO;
+    acaoMatrizTransicaoEstados[IDLE][PEDIR] = A03;
+
+    proximoEstadoMatrizTransicaoEstados[PEDINDO][PEDIDOSUCESSO] = IDLE;
+    acaoMatrizTransicaoEstados[PEDINDO][PEDIDOSUCESSO] = A04;
 
 
-    acaoMatrizTransicaoEstados[IDLE][ALTERARESTOQUE] = ALTERANDOESTOQUE;
-    proximoEstadoMatrizTransicaoEstados[IDLE][ALTERARESTOQUE] = A05;
-
-    acaoMatrizTransicaoEstados[ALTERANDOESTOQUE][ESTOQUEALTERADO] = IDLE;
-    proximoEstadoMatrizTransicaoEstados[ALTERANDOESTOQUE][ESTOQUEALTERADO] = A06;
+    proximoEstadoMatrizTransicaoEstados[IDLE][CANCELAR] = CANCELANDO;
+    acaoMatrizTransicaoEstados[IDLE][CANCELAR] = A09;
 
 
-    acaoMatrizTransicaoEstados[IDLE][REMOVERPRODUTO] = REMOVENDOPRODUTO;
-    proximoEstadoMatrizTransicaoEstados[IDLE][REMOVERPRODUTO] = A07;
+    proximoEstadoMatrizTransicaoEstados[IDLE][ALTERARESTOQUE] = ALTERANDOESTOQUE;
+    acaoMatrizTransicaoEstados[IDLE][ALTERARESTOQUE] = A05;
 
-    acaoMatrizTransicaoEstados[REMOVENDOPRODUTO][PRODUTOREMOVIDO] = IDLE;
-    proximoEstadoMatrizTransicaoEstados[REMOVENDOPRODUTO][PRODUTOREMOVIDO] = A08;
+    proximoEstadoMatrizTransicaoEstados[ALTERANDOESTOQUE][ESTOQUEALTERADO] = IDLE;
+    acaoMatrizTransicaoEstados[ALTERANDOESTOQUE][ESTOQUEALTERADO] = A06;
+
+
+    proximoEstadoMatrizTransicaoEstados[IDLE][REMOVERPRODUTO] = REMOVENDOPRODUTO;
+    acaoMatrizTransicaoEstados[IDLE][REMOVERPRODUTO] = A07;
+
+    proximoEstadoMatrizTransicaoEstados[REMOVENDOPRODUTO][PRODUTOREMOVIDO] = IDLE;
+    acaoMatrizTransicaoEstados[REMOVENDOPRODUTO][PRODUTOREMOVIDO] = A08;
 
 
 }
@@ -88,27 +88,27 @@ int executaAcao(int codigoAcao) {
             com_pedidoRecebido();
             break;
 
-//        case A05: TODO: decomentar quando funcionar
-//            com_alterandoEstoque();
-//            eventoInterno = ESTOQUEALTERADO;
-//            break;
-//
-//        case A06:
-//            com_estoqueAlterado();
-//            break;
-//
-//        case A07:
-//            com_removendoProduto();
-//            eventoInterno = PRODUTOREMOVIDO;
-//            break;
-//
-//        case A08:
-//            com_produtoRemovido();
-//            break;
-//
-//        case A09:
-//            com_cancelamento();
-//            break;
+        case A05:
+            com_alterandoEstoque();
+            eventoInterno = ESTOQUEALTERADO;
+            break;
+
+        case A06:
+            com_estoqueAlterado();
+            break;
+
+        case A07:
+            com_removendoProduto();
+            eventoInterno = PRODUTOREMOVIDO;
+            break;
+
+        case A08:
+            com_produtoRemovido();
+            break;
+
+        case A09:
+            com_cancelamento();
+            break;
 
         default:
             printf("Ação não identificada.");
@@ -179,7 +179,7 @@ int main(void) {
             codigoAcao = obterAcao(estado, codigoEvento);
             estado = obterProximoEstado(estado, codigoEvento);
             eventoInterno = executaAcao(codigoAcao);
-            printf("Estado: %d Evento: %d Acao: %d\n", estado, codigoEvento, codigoAcao);
+//            printf("\nEstado: %d Evento: %d Acao: %d\n", estado, codigoEvento, codigoAcao);
 
 
         }
