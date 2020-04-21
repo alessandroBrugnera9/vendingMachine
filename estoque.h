@@ -12,7 +12,7 @@ extern void est_inicializaEstoque();
 
 extern void est_exportarEstoque();
 
-extern int est_pagamento(float);
+extern int est_pagamento(int);
 extern char* est_getNomeProduto(int);
 extern float est_getPrecoProduto(int);
 #endif //VENDINGMACHINE_ESTOQUE_H

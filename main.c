@@ -88,27 +88,27 @@ int executaAcao(int codigoAcao) {
             com_pedidoRecebido();
             break;
 
-        case A05:
-            com_alterandoEstoque();
-            eventoInterno = ESTOQUEALTERADO;
-            break;
-
-        case A06:
-            com_estoqueAlterado();
-            break;
-
-        case A07:
-            com_removendoProduto();
-            eventoInterno = PRODUTOREMOVIDO;
-            break;
-
-        case A08:
-            com_produtoRemovido();
-            break;
-
-        case A09:
-            com_cancelamento();
-            break;
+//        case A05: TODO: decomentar quando funcionar
+//            com_alterandoEstoque();
+//            eventoInterno = ESTOQUEALTERADO;
+//            break;
+//
+//        case A06:
+//            com_estoqueAlterado();
+//            break;
+//
+//        case A07:
+//            com_removendoProduto();
+//            eventoInterno = PRODUTOREMOVIDO;
+//            break;
+//
+//        case A08:
+//            com_produtoRemovido();
+//            break;
+//
+//        case A09:
+//            com_cancelamento();
+//            break;
 
         default:
             printf("Ação não identificada.");

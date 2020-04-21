@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "estoque.h"
+#include "string.h"
 #include "caixaDeDinheiro.h"
 
 
@@ -25,7 +26,7 @@ void est_inicializaEstoque(void) {
 
 
     //Já liga com isso
-    strncpy(produtos[0].nome, "suco de laranja", 29);
+    strncpy(produtos[0].nome, "Suco de Laranja", 29);
     produtos[0].nome[29] = 0;
     produtos[0].preco = 1.00;
     produtos[0].quantidade = 3;
@@ -49,7 +50,7 @@ void est_exportarEstoque() { //TODO: tentar printar isso pelo comunicador
 
 }
 
-int est_pagamento(float produtoDesejado) {
+int est_pagamento(int produtoDesejado) {
     if (cxd_getCredito() >= produtos[produtoDesejado].preco) {
         return true;
     } else {
