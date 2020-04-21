@@ -3,3 +3,17 @@
 //
 
 #include "caixaDeDinheiro.h"
+
+static float credito;
+
+void cxd_zeraCaixa() {
+    credito = 0;
+}
+
+float cxd_getCredito() {
+    return credito;
+}
+
+void cxd_adicionar(float dinheiroInserido) {
+    credito += dinheiroInserido;
+}
